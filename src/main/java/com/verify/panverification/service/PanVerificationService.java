@@ -20,9 +20,7 @@ public class PanVerificationService {
 
     private final PanVerificationRepository panVerify;
 
-    private final UserRepository userRepository;
 
-    private final RestTemplate restTemplate;
 
     public PanVerificationResponse verify(
             PanVerificationRequest request
@@ -31,7 +29,7 @@ public class PanVerificationService {
         log.info("PAN Verification Started for PAN={}",
                 request.panNumber());
 
-        String panStatus = "E";
+
 
         PanVerification verification =
                 new PanVerification();
@@ -52,13 +50,9 @@ public class PanVerificationService {
                 request.dob()
         );
 
-        verification.setVerificationStatus(
-                "VERIFIED"
-        );
+        verification.setPanStatus("E");
 
-        verification.setVerifiedAt(
-                LocalDateTime.now()
-        );
+
 
         panVerify.save(verification);
 

@@ -1,8 +1,8 @@
 package com.verify.panverification.security;
 
-import com.verify.panverification.security.JwtAuthFilter;
-import jakarta.servlet.Filter;
+
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -21,9 +21,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
 
+        log.info("Configuration Security Filter Chain");
+
         http
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
+
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
@@ -38,10 +41,11 @@ public class SecurityConfig {
                                 "/api/admin/**"
                         )
                         .hasRole("ADMIN")
+
                         .requestMatchers(
                                 "/api/user/**"
                         )
-                        .hasRole("USER,ADMIN")
+                        .hasAnyRole("USER","ADMIN")
 
                         .anyRequest()
                         .authenticated())
@@ -49,6 +53,8 @@ public class SecurityConfig {
                 .addFilterBefore(
                          jwtAuthFilter,
                         UsernamePasswordAuthenticationFilter.class);
+
+        log.info("Security Filter Chain configured successfully");
 
         return http.build();
     }

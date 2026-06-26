@@ -13,10 +13,10 @@ import java.security.PrivateKey;
 @Service
 public class CertificateService {
 
-    @Value("${certificate.path}")
+    @Value("${opv.pfx-file}")
     private String certificatePath;
 
-    @Value("${certificate.password}")
+    @Value("${opv.pfx-password}")
     private String password;
 
     public PrivateKey loadPrivateKey() throws Exception {

@@ -2,22 +2,26 @@ package com.verify.panverification.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Slf4j
 @Service
 public class JwtService {
 
-    private final String SECRET =
-            "1234567890123456789012345678901234567890123456789012345678901234";
+    @Value("${jwt.secret}")
+    private  String SECRET;
 
     public String generateToken(
             String email
             ,String role
     )
     {
-        return Jwts.builder()
+        log.debug("Generating JWT Token for email: {}, role: {}",email,role);
+        String token = Jwts.builder()
                 .subject(email)
                 .claim("role",role)
                 .issuedAt(new Date())
@@ -29,6 +33,10 @@ public class JwtService {
                                                 SECRET.getBytes()
                                         )
                                 ).compact();
+
+        log.debug("JWT token generated successfully for: {}",email);
+
+        return token;
     }
 
 
@@ -36,7 +44,8 @@ public class JwtService {
             String token
     )
     {
-        return Jwts.parser()
+        log.debug("Extracting username from JWT token");
+        String username = Jwts.parser()
                 .verifyWith(
                         Keys.hmacShaKeyFor(
                                 SECRET.getBytes()
@@ -46,10 +55,14 @@ public class JwtService {
                 .parseSignedClaims(token)
                 .getPayload()
                 .getSubject();
+
+        log.debug("Extracted username: {}",username);
+        return username;
     }
     public String extractRole(String token) {
 
-        return Jwts.parser()
+        log.debug("Extracting role from JWT token");
+        String role = Jwts.parser()
                 .verifyWith(
                         Keys.hmacShaKeyFor(
                                 SECRET.getBytes()
@@ -59,5 +72,8 @@ public class JwtService {
                 .parseSignedClaims(token)
                 .getPayload()
                 .get("role", String.class);
+
+        log.debug("Extracted role: {}",role);
+        return role;
     }
 }

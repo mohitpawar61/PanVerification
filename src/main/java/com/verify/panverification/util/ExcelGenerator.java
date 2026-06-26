@@ -1,6 +1,7 @@
 package com.verify.panverification.util;
 
 import com.verify.panverification.entity.PanVerification;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -11,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
+@Slf4j
 @Component
 public class ExcelGenerator {
 
@@ -18,6 +20,7 @@ public class ExcelGenerator {
             List<PanVerification> data)
             throws Exception {
 
+        log.info("Starting Excel generation for {} records",data.size());
         Workbook workbook =
                 new XSSFWorkbook();
 
@@ -25,6 +28,7 @@ public class ExcelGenerator {
                 workbook.createSheet(
                         "Verifications"
                 );
+        log.debug("Excel sheet 'Verification' created");
 
         int rowNum = 0;
 
@@ -44,6 +48,8 @@ public class ExcelGenerator {
                     .setCellValue(
                             p.getPanStatus()
                     );
+
+            log.debug("Added row {} for PAN: {}",rowNum,p.getPanNumber());
         }
 
         ByteArrayOutputStream out =
@@ -52,6 +58,8 @@ public class ExcelGenerator {
         workbook.write(out);
 
         workbook.close();
+
+        log.info("Excel generation completed successfully with {} rows",rowNum);
 
         return new ByteArrayInputStream(
                 out.toByteArray()

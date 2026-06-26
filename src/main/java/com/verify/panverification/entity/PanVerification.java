@@ -28,7 +28,6 @@ public class PanVerification {
 
     private String verificationStatus;
 
-    private LocalDateTime verifiedAt;
 
     @ManyToOne
     @JoinColumn(name="user_id")

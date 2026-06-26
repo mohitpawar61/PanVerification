@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class AdminInitializer
@@ -21,11 +21,13 @@ public class AdminInitializer
     @Override
     public void run(String... args) {
 
+        log.info("Checking if default admin exists...");
         if (!userRepository.existsByEmail("admin@gmail.com")) {
 
             User admin = new User();
 
             admin.setFullName("System Admin");
+            admin.setUsername("admin");
             admin.setEmail("admin@gmail.com");
 
             admin.setPassword(
@@ -36,7 +38,10 @@ public class AdminInitializer
 
             userRepository.save(admin);
 
-            System.out.println("ADMIN CREATED SUCCESSFULLY");
+            log.info("Default admin created successfully with email: admin@gmail.com");
+        }
+        else{
+            log.debug("Default admin already exists, skipping creation");
         }
     }
 }

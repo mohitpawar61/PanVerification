@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.verify.panverification.dto.OpvRequest;
 import com.verify.panverification.dto.PanRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProteanService {
@@ -32,18 +34,10 @@ public class ProteanService {
     @Value("${protean.uat-url}")
     private String url;
 
-    public String verifyPan() {
+    public String verifyPan(PanRequest panRequest) {
 
+        log.info("Protean PAN verification started for PAN: {}",panRequest.pan());
         try {
-
-
-            PanRequest panRequest =
-                    new PanRequest(
-                            "ABCDE1234F",
-                            "TEST USER",
-                            "",
-                            "01/01/1990"
-                    );
 
             List<PanRequest> inputData =
                     List.of(panRequest);
@@ -52,16 +46,15 @@ public class ProteanService {
             String inputDataJson =
                     objectMapper.writeValueAsString(inputData);
 
-            System.out.println("Input Data JSON:");
-            System.out.println(inputDataJson);
+            log.debug("Input Data JSON: {}", inputDataJson);
 
             String signature =
                     signatureService.generateSignature(
                             inputDataJson
                     );
+            log.debug("Signature generated successfully");
 
-            System.out.println("Generated Signature:");
-            System.out.println(signature);
+
 
 
             OpvRequest request =
@@ -85,9 +78,9 @@ public class ProteanService {
                     objectMapper.writeValueAsString(
                             request
                     );
+            log.debug("Final Request JSON: {}", requestJson);
 
-            System.out.println("Final Request JSON:");
-            System.out.println(requestJson);
+
 
 
             HttpHeaders headers =
@@ -104,9 +97,7 @@ public class ProteanService {
                     );
 
 
-            System.out.println(
-                    "Calling Protean API..."
-            );
+            log.info("Calling Protean API at URL: {}", url);
 
             ResponseEntity<String> response =
                     restTemplate.postForEntity(
@@ -115,21 +106,14 @@ public class ProteanService {
                             String.class
                     );
 
-            System.out.println(
-                    "Response Status : "
-                            + response.getStatusCode()
-            );
-
-            System.out.println(
-                    "Response Body : "
-                            + response.getBody()
-            );
+            log.info("Protean API Response Status: {}", response.getStatusCode());
+            log.debug("Protean API Response Body: {}", response.getBody());
 
             return response.getBody();
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            log.error("Protean PAN verification failed: {}", e.getMessage(), e);
 
             return "ERROR : "
                     + e.getMessage();

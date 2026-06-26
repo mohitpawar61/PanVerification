@@ -25,7 +25,7 @@ public class UserController {
 
         String msg = service.register(request);
 
-        log.info("User Registered Successfully");
+        log.info("User Registered Successfully for: {}",request.email());
 
         return ResponseEntity.ok(
                 new ApiResponse(
@@ -40,13 +40,13 @@ public class UserController {
     public ResponseEntity<ApiResponse<LoginResponse>> login(
             @RequestBody LoginRequest request
     ) {
-        log.info("Login Request Received for {}"
+        log.info("Login Request Received for {}",request.email()
                 );
 
         ResponseEntity<ApiResponse<LoginResponse>> response =
                 ResponseEntity.ok(service.login(request));
 
-        log.info("Login Successful for {}"
+        log.info("Login Successful for email: {}",request.email()
                 );
 
         return response;    }

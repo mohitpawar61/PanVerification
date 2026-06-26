@@ -4,18 +4,22 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.verify.panverification.entity.PanVerification;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
+@Slf4j
 @Component
 public class PdfGenerator {
 
     public ByteArrayInputStream generate(
             List<PanVerification> data)
             throws Exception {
+
+        log.info("Starting PDF generation for {} records",data.size());
 
         Document document =
                 new Document();
@@ -36,6 +40,8 @@ public class PdfGenerator {
                 )
         );
 
+        log.debug("PDF header added");
+
         for(PanVerification p : data){
 
             document.add(
@@ -46,6 +52,7 @@ public class PdfGenerator {
         }
 
         document.close();
+        log.info("PDF generation completed successfully");
 
         return new ByteArrayInputStream(
                 out.toByteArray()

@@ -1,5 +1,8 @@
 package com.verify.panverification.util;
 
+
+
+
 public class Constants {
 
     public static final String VERIFIED =
@@ -10,4 +13,6 @@ public class Constants {
 
     public static final String MOCK_API =
             "MOCK_API";
+
+
 }

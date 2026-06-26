@@ -25,7 +25,7 @@ public class PanVerificationController {
 
     @PostMapping("/verify")
     public ResponseEntity<ApiResponse> verify(
-            @RequestBody PanVerificationRequest request) throws Exception {
+           @Valid @RequestBody PanVerificationRequest request) throws Exception {
 
         log.info("PAN Verification Request Received for PAN={}",
                 request.panNumber());

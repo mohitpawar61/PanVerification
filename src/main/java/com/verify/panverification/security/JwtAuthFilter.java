@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -28,10 +30,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             FilterChain filterChain)
         throws ServletException, IOException{
 
-        System.out.println("JWT Filter");
+        log.debug("JWT Filter triggered for URI: {}", request.getRequestURI());
         String authHeader =
                 request.getHeader("Authorization");
-        System.out.println(">>> Auth header: [" + authHeader + "]");
+        log.debug("Auth header present: {}", authHeader != null);
 
         if(authHeader == null || !authHeader.startsWith("Bearer "))
         {
@@ -50,6 +52,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             email = jwtService.extractUsername(token);
             role = jwtService.extractRole(token);
 
+            log.info("JWT authenticated user: {}, role: {}", email, role);
             List<GrantedAuthority> authorities =
                     List.of(
                             new SimpleGrantedAuthority(
@@ -70,6 +73,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         catch (Exception e)
         {
+            log.error("JWT validation failed: {}", e.getMessage());
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
             return;
         }
