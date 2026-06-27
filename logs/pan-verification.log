@@ -6890,3 +6890,592 @@ java.security.UnrecoverableKeyException: Password verification failed
 2026-06-27 15:59:43 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-06-27 15:59:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-06-27 15:59:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-27 16:02:06 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-06-27 16:02:07 [restartedMain] INFO  c.v.p.PanVerificationApplication - Starting PanVerificationApplication using Java 21.0.11 with PID 20572 (C:\Users\shubh\IdeaProjects\PanVerification\target\classes started by shubh in C:\Users\shubh\IdeaProjects\PanVerification)
+2026-06-27 16:02:07 [restartedMain] DEBUG c.v.p.PanVerificationApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-06-27 16:02:07 [restartedMain] INFO  c.v.p.PanVerificationApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-27 16:02:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-27 16:02:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-27 16:02:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-27 16:02:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 142 ms. Found 5 JPA repository interfaces.
+2026-06-27 16:02:11 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-27 16:02:11 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-27 16:02:11 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-27 16:02:11 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-06-27 16:02:11 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 4379 ms
+2026-06-27 16:02:11 [restartedMain] DEBUG c.v.p.security.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-06-27 16:02:11 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-27 16:02:12 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-06-27 16:02:13 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-27 16:02:13 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-27 16:02:14 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fb2c34f
+2026-06-27 16:02:14 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-27 16:02:14 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/pan_verification_db]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: pan_verification_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-27 16:02:17 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table audit_log (
+        id bigint not null auto_increment,
+        action varchar(100) not null,
+        details TEXT,
+        ip_address varchar(50),
+        status varchar(10),
+        timestamp datetime(6) not null,
+        username varchar(100) not null,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table audit_log (
+        id bigint not null auto_increment,
+        action varchar(100) not null,
+        details TEXT,
+        ip_address varchar(50),
+        status varchar(10),
+        timestamp datetime(6) not null,
+        username varchar(100) not null,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table pan_verification (
+        id bigint not null auto_increment,
+        dob date,
+        fathername varchar(255),
+        full_name varchar(255),
+        pan_number varchar(255),
+        pan_status varchar(255),
+        verification_status varchar(255),
+        user_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table pan_verification (
+        id bigint not null auto_increment,
+        dob date,
+        fathername varchar(255),
+        full_name varchar(255),
+        pan_number varchar(255),
+        pan_status varchar(255),
+        verification_status varchar(255),
+        user_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table protean_output_data (
+        id bigint not null auto_increment,
+        dob varchar(255),
+        fathername varchar(255),
+        name varchar(255),
+        pan varchar(255),
+        pan_status varchar(255),
+        seeding_status varchar(255),
+        header_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table protean_output_data (
+        id bigint not null auto_increment,
+        dob varchar(255),
+        fathername varchar(255),
+        name varchar(255),
+        pan varchar(255),
+        pan_status varchar(255),
+        seeding_status varchar(255),
+        header_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table protean_response_header (
+        id bigint not null auto_increment,
+        records_count varchar(255),
+        response_code varchar(255),
+        response_time varchar(255),
+        transaction_id varchar(255),
+        user_id varchar(255),
+        version varchar(255),
+        pan_verification_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table protean_response_header (
+        id bigint not null auto_increment,
+        records_count varchar(255),
+        response_code varchar(255),
+        response_time varchar(255),
+        transaction_id varchar(255),
+        user_id varchar(255),
+        version varchar(255),
+        pan_verification_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table users (
+        id bigint not null auto_increment,
+        created_at datetime(6) not null,
+        email varchar(150) not null,
+        enabled bit not null,
+        full_name varchar(255) not null,
+        password varchar(255) not null,
+        role enum ('ADMIN','USER') not null,
+        username varchar(100) not null,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    create table users (
+        id bigint not null auto_increment,
+        created_at datetime(6) not null,
+        email varchar(150) not null,
+        enabled bit not null,
+        full_name varchar(255) not null,
+        password varchar(255) not null,
+        role enum ('ADMIN','USER') not null,
+        username varchar(100) not null,
+        primary key (id)
+    ) engine=InnoDB
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_response_header 
+       drop index UKibar1f3yr48ypm5vjhgs6l6ip
+2026-06-27 16:02:17 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_response_header 
+       drop index UKibar1f3yr48ypm5vjhgs6l6ip
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_response_header 
+       add constraint UKibar1f3yr48ypm5vjhgs6l6ip unique (pan_verification_id)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_response_header 
+       add constraint UKibar1f3yr48ypm5vjhgs6l6ip unique (pan_verification_id)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       drop index UK6dotkott2kjsp8vw4d0m25fb7
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       drop index UK6dotkott2kjsp8vw4d0m25fb7
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       drop index UKr43af9ap4edm43mmtq01oddj6
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       drop index UKr43af9ap4edm43mmtq01oddj6
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       add constraint UKr43af9ap4edm43mmtq01oddj6 unique (username)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table users 
+       add constraint UKr43af9ap4edm43mmtq01oddj6 unique (username)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table pan_verification 
+       add constraint FK26jdgpue9xrewu84eyk0nhs9n 
+       foreign key (user_id) 
+       references users (id)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table pan_verification 
+       add constraint FK26jdgpue9xrewu84eyk0nhs9n 
+       foreign key (user_id) 
+       references users (id)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_output_data 
+       add constraint FK8m0o3p2mnct9ttkoqk1hbw22m 
+       foreign key (header_id) 
+       references protean_response_header (id)
+2026-06-27 16:02:18 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_output_data 
+       add constraint FK8m0o3p2mnct9ttkoqk1hbw22m 
+       foreign key (header_id) 
+       references protean_response_header (id)
+2026-06-27 16:02:19 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_response_header 
+       add constraint FK8t54g70wfq4s809xsc796dpu5 
+       foreign key (pan_verification_id) 
+       references pan_verification (id)
+2026-06-27 16:02:19 [restartedMain] DEBUG org.hibernate.SQL - 
+    alter table protean_response_header 
+       add constraint FK8t54g70wfq4s809xsc796dpu5 
+       foreign key (pan_verification_id) 
+       references pan_verification (id)
+2026-06-27 16:02:19 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-27 16:02:19 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-27 16:02:20 [restartedMain] INFO  c.v.p.config.RestTemplateConfig - Configuring RestTemplate with SSL bypass for UAT
+2026-06-27 16:02:20 [restartedMain] INFO  c.v.p.config.RestTemplateConfig - RestTemplate configured successfully with SSL bypass
+2026-06-27 16:02:20 [restartedMain] INFO  c.v.p.config.CorsConfig - CORs configuration initialized - allowed origins: localhost: 5173, localhost: 3000
+2026-06-27 16:02:20 [restartedMain] INFO  c.v.p.config.SwaggerConfig - Swagger/OpenAPI configuration initialized
+2026-06-27 16:02:20 [restartedMain] DEBUG c.v.p.config.SwaggerConfig - Configuration JWT Bearer Auth for Swagger UI
+2026-06-27 16:02:20 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-27 16:02:20 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-06-27 16:02:20 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-06-27 16:02:21 [restartedMain] INFO  c.v.p.security.SecurityConfig - Configuration Security Filter Chain
+2026-06-27 16:02:21 [restartedMain] INFO  c.v.p.security.SecurityConfig - Security Filter Chain configured successfully
+2026-06-27 16:02:22 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-27 16:02:22 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-27 16:02:22 [restartedMain] INFO  c.v.p.PanVerificationApplication - Started PanVerificationApplication in 16.683 seconds (process running for 18.264)
+2026-06-27 16:02:22 [restartedMain] INFO  c.v.p.config.AdminInitializer - Checking if default admin exists...
+2026-06-27 16:02:23 [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-06-27 16:02:23 [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-06-27 16:02:23 [restartedMain] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, full_name, password, role, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:02:23 [restartedMain] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, full_name, password, role, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:02:23 [restartedMain] INFO  c.v.p.config.AdminInitializer - Default admin created successfully with email: admin@gmail.com
+2026-06-27 16:02:23 [restartedMain] INFO  c.v.p.PanVerificationApplication - ======================================================
+2026-06-27 16:02:23 [restartedMain] INFO  c.v.p.PanVerificationApplication -     PAN Verification Application Started Successfully 
+2026-06-27 16:02:23 [restartedMain] INFO  c.v.p.PanVerificationApplication - =======================================================
+2026-06-27 16:03:51 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-27 16:03:51 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-27 16:03:51 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2026-06-27 16:03:52 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/users/login
+2026-06-27 16:03:52 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: false
+2026-06-27 16:03:52 [http-nio-8080-exec-2] INFO  c.v.p.controller.UserController - Login Request Received for manish@gmail.com
+2026-06-27 16:03:52 [http-nio-8080-exec-2] INFO  c.v.p.service.UserService - Login attempt for email: manish@gmail.com
+2026-06-27 16:03:52 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-06-27 16:03:52 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-06-27 16:03:52 [http-nio-8080-exec-2] WARN  c.v.p.service.UserService - Login failed - user not found: manish@gmail.com
+2026-06-27 16:03:52 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: User not found] with root cause
+java.lang.RuntimeException: User not found
+	at com.verify.panverification.service.UserService.lambda$login$0(UserService.java:51)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.verify.panverification.service.UserService.login(UserService.java:49)
+	at com.verify.panverification.controller.UserController.login(UserController.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$2(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:376)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at com.verify.panverification.security.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:40)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-27 16:04:41 [http-nio-8080-exec-4] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/users/register
+2026-06-27 16:04:41 [http-nio-8080-exec-4] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: false
+2026-06-27 16:04:41 [http-nio-8080-exec-4] INFO  c.v.p.controller.UserController - User Registration Request Received for Mohit Rajendra Pawar
+2026-06-27 16:04:41 [http-nio-8080-exec-4] INFO  c.v.p.service.UserService - Registering new user with email: mohit@gmail.com
+2026-06-27 16:04:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, full_name, password, role, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:04:41 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, full_name, password, role, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:04:41 [http-nio-8080-exec-4] INFO  c.v.p.service.UserService - User registered successfully: mohit@gmail.com
+2026-06-27 16:04:41 [http-nio-8080-exec-4] INFO  c.v.p.controller.UserController - User Registered Successfully for: mohit@gmail.com
+2026-06-27 16:04:49 [http-nio-8080-exec-5] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/users/login
+2026-06-27 16:04:49 [http-nio-8080-exec-5] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: false
+2026-06-27 16:04:49 [http-nio-8080-exec-5] INFO  c.v.p.controller.UserController - Login Request Received for mohit@gmail.com
+2026-06-27 16:04:49 [http-nio-8080-exec-5] INFO  c.v.p.service.UserService - Login attempt for email: mohit@gmail.com
+2026-06-27 16:04:49 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-06-27 16:04:49 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password,
+        u1_0.role,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-06-27 16:04:49 [http-nio-8080-exec-5] DEBUG c.v.p.security.JwtService - Generating JWT Token for email: mohit@gmail.com, role: USER
+2026-06-27 16:04:50 [http-nio-8080-exec-5] DEBUG c.v.p.security.JwtService - JWT token generated successfully for: mohit@gmail.com
+2026-06-27 16:04:50 [http-nio-8080-exec-5] INFO  c.v.p.service.UserService - Login successful for: mohit@gmail.com
+2026-06-27 16:04:50 [http-nio-8080-exec-5] INFO  c.v.p.controller.UserController - Login Successful for email: mohit@gmail.com
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/pan/history
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: true
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG c.v.p.security.JwtService - Extracting username from JWT token
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG c.v.p.security.JwtService - Extracted username: mohit@gmail.com
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG c.v.p.security.JwtService - Extracting role from JWT token
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG c.v.p.security.JwtService - Extracted role: USER
+2026-06-27 16:04:50 [http-nio-8080-exec-7] INFO  c.v.p.security.JwtAuthFilter - JWT authenticated user: mohit@gmail.com, role: USER
+2026-06-27 16:04:50 [http-nio-8080-exec-7] INFO  c.v.p.c.PanVerificationController - History API called
+2026-06-27 16:04:50 [http-nio-8080-exec-7] INFO  c.v.p.service.PanVerificationService - Fetching PAN Verification History
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        pv1_0.id,
+        pv1_0.dob,
+        pv1_0.fathername,
+        pv1_0.full_name,
+        pv1_0.pan_number,
+        pv1_0.pan_status,
+        pv1_0.user_id,
+        pv1_0.verification_status 
+    from
+        pan_verification pv1_0 
+    order by
+        pv1_0.id desc
+2026-06-27 16:04:50 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        pv1_0.id,
+        pv1_0.dob,
+        pv1_0.fathername,
+        pv1_0.full_name,
+        pv1_0.pan_number,
+        pv1_0.pan_status,
+        pv1_0.user_id,
+        pv1_0.verification_status 
+    from
+        pan_verification pv1_0 
+    order by
+        pv1_0.id desc
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/pan/verify
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: true
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.security.JwtService - Extracting username from JWT token
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.security.JwtService - Extracted username: mohit@gmail.com
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.security.JwtService - Extracting role from JWT token
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.security.JwtService - Extracted role: USER
+2026-06-27 16:05:06 [http-nio-8080-exec-9] INFO  c.v.p.security.JwtAuthFilter - JWT authenticated user: mohit@gmail.com, role: USER
+2026-06-27 16:05:06 [http-nio-8080-exec-9] INFO  c.v.p.c.PanVerificationController - PAN Verification Request Received for PAN=AAAPA1334A
+2026-06-27 16:05:06 [http-nio-8080-exec-9] INFO  c.v.p.service.PanVerificationService - PAN Verification Started for PAN=AAAPA1334A
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.service.PanVerificationService - DOB formatted for Protean: 15/09/1993
+2026-06-27 16:05:06 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - Protean PAN verification started for PAN: AAAPA1334A
+2026-06-27 16:05:06 [http-nio-8080-exec-9] DEBUG c.v.p.service.ProteanService - Input Data JSON: [{"pan":"AAAPA1334A","name":"SHEKHAR ANAND VERMA","fathername":"ANAND","dob":"15/09/1993"}]
+2026-06-27 16:05:06 [http-nio-8080-exec-9] INFO  c.v.p.service.SignatureService - Generating digital signature
+2026-06-27 16:05:07 [http-nio-8080-exec-9] DEBUG c.v.p.service.SignatureService - Loading Keystore from file: certs/output.jks
+2026-06-27 16:05:07 [http-nio-8080-exec-9] DEBUG c.v.p.service.SignatureService - KeyStore loaded successfully
+2026-06-27 16:05:07 [http-nio-8080-exec-9] DEBUG c.v.p.service.SignatureService - Found key alies: ds test certificate 1
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.SignatureService - Signature generated successfully
+2026-06-27 16:05:07 [http-nio-8080-exec-9] DEBUG c.v.p.service.ProteanService - Signature generated successfully
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - PROTEAN API - REQUEST HEADERS
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   User_ID        : V0024301
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Records_count  : 1
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Request_time   : 2026-06-27T16:05:07
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Transaction_ID : V0024301:1782556507825
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Version        : 4
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 16:05:07 [http-nio-8080-exec-9] DEBUG c.v.p.service.ProteanService - Final Request JSON: {"User_ID":"V0024301","Records_count":"1","Request_time":"2026-06-27T16:05:07","Transaction_ID":"V0024301:1782556507825","Version":"4","inputData":[{"pan":"AAAPA1334A","name":"SHEKHAR ANAND VERMA","fathername":"ANAND","dob":"15/09/1993"}],"signature":"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"}
+2026-06-27 16:05:07 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - Calling Protean API at URL: https://121.240.36.237/TIN/PanInquiryAPIBackEnd
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - Protean API Response Status: 200 OK
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - PROTEAN API - RESPONSE HEADERS
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   User_ID        : V0024301
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Records_count  : 1
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Response_time  : 2026-06-27T16:05:45.451
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Transaction_ID : V0024301:1782556507825
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   Version        : 4
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 16:05:08 [http-nio-8080-exec-9] DEBUG c.v.p.service.ProteanService - Protean API Response Body: {"response_Code":"1","outputData":[{"pan":"AAAPA1334A","pan_status":"E","name":"Y","fathername":"","dob":"Y","seeding_status":"Y"}]}
+
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - PROTEAN API - RESPONSE BODY
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   response_Code  : 1
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   outputData     : 1 record(s)
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -   outputData[0] :
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -     pan            : AAAPA1334A
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -     pan_status     : E
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -     name           : Y
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -     fathername     : 
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -     dob            : Y
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService -     seeding_status : Y
+2026-06-27 16:05:08 [http-nio-8080-exec-9] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 16:05:08 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        pan_verification
+        (dob, fathername, full_name, pan_number, pan_status, user_id, verification_status) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:05:08 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        pan_verification
+        (dob, fathername, full_name, pan_number, pan_status, user_id, verification_status) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:05:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        protean_response_header
+        (pan_verification_id, records_count, response_code, response_time, transaction_id, user_id, version) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:05:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        protean_response_header
+        (pan_verification_id, records_count, response_code, response_time, transaction_id, user_id, version) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:05:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        protean_output_data
+        (dob, fathername, header_id, name, pan, pan_status, seeding_status) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:05:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        protean_output_data
+        (dob, fathername, header_id, name, pan, pan_status, seeding_status) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 16:05:09 [http-nio-8080-exec-9] INFO  c.v.p.service.PanVerificationService - PAN Verification Saved | PAN=AAAPA1334A | Status=SUCCESS
+2026-06-27 16:05:09 [http-nio-8080-exec-9] INFO  c.v.p.c.PanVerificationController - PAN Verification Completed for PAN=AAAPA1334A
