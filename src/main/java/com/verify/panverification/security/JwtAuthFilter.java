@@ -1,5 +1,7 @@
 package com.verify.panverification.security;
 
+import com.verify.panverification.entity.User;
+import com.verify.panverification.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ import java.util.List;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(
@@ -52,6 +55,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             email = jwtService.extractUsername(token);
             role = jwtService.extractRole(token);
 
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() ->
+                            new RuntimeException("User not found: " + email));
             log.info("JWT authenticated user: {}, role: {}", email, role);
             List<GrantedAuthority> authorities =
                     List.of(
@@ -60,16 +66,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                             )
                     );
 
-            UsernamePasswordAuthenticationToken auth =
+            UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
-                            email,
+                            user,
                             null,
-                            authorities
+                            user.getAuthorities()
                     );
 
             SecurityContextHolder
                     .getContext()
-                    .setAuthentication(auth);
+                    .setAuthentication(authentication);
         }
         catch (Exception e)
         {

@@ -4,12 +4,14 @@ import com.verify.panverification.dto.ApiResponse;
 import com.verify.panverification.dto.PanVerificationRequest;
 import com.verify.panverification.dto.PanVerificationResponse;
 import com.verify.panverification.entity.PanVerification;
+import com.verify.panverification.entity.User;
 import com.verify.panverification.service.PanVerificationService;
 import com.verify.panverification.service.SignatureService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +27,15 @@ public class PanVerificationController {
 
     @PostMapping("/verify")
     public ResponseEntity<ApiResponse> verify(
-           @Valid @RequestBody PanVerificationRequest request) throws Exception {
+            @Valid @RequestBody PanVerificationRequest request, Authentication authentication) throws Exception {
 
         log.info("PAN Verification Request Received for PAN={}",
                 request.panNumber());
+
+        User currentUser = (User) authentication.getPrincipal();
+
         PanVerificationResponse response =
-                panVerificationService.verify(request);
+                panVerificationService.verify(request,currentUser);
 
         log.info("PAN Verification Completed for PAN={}",
                 request.panNumber());
@@ -45,21 +50,21 @@ public class PanVerificationController {
     }
 
     @GetMapping("/history")
-    public List<PanVerification> history()
+    public List<PanVerification> history(Authentication authentication)
     {
+        User currentUser = (User) authentication.getPrincipal();
 
         log.info("History API called");
-        return panVerificationService
-                .getHistory();
+        return panVerificationService.getHistory(currentUser);
     }
 
     @GetMapping("/search")
     public List<PanVerification> search(
-            @RequestParam String pan){
+            @RequestParam String pan,Authentication authentication){
 
+        User currentUser = (User) authentication.getPrincipal();
         log.info("Search API called for PAN={}", pan);
-        return panVerificationService
-                .search(pan);
+        return panVerificationService.search(pan, currentUser);
     }
 
     @GetMapping("/test-cert")

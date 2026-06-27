@@ -5,17 +5,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.verify.panverification.dto.PanRequest;
 import com.verify.panverification.dto.PanVerificationRequest;
 import com.verify.panverification.dto.PanVerificationResponse;
-import com.verify.panverification.entity.PanVerification;
-import com.verify.panverification.entity.ProteanOutputData;
-import com.verify.panverification.entity.ProteanResponseHeader;
+import com.verify.panverification.entity.*;
 import com.verify.panverification.repository.PanVerificationRepository;
 import com.verify.panverification.repository.ProteanResponseHeaderRepository;
+import com.verify.panverification.util.ExcelGenerator;
+import com.verify.panverification.util.PdfGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,13 @@ public class PanVerificationService {
     private final ProteanResponseHeaderRepository headerRepository;
     private final ProteanService proteanService;
     private final ObjectMapper objectMapper;
+    private final PdfGenerator pdfGenerator;
+    private final ExcelGenerator excelGenerator;
 
     private static final DateTimeFormatter PROTEAN_DOB_FORMAT =
             DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public PanVerificationResponse verify(PanVerificationRequest request) throws Exception {
+    public PanVerificationResponse verify(PanVerificationRequest request,User currentUser) throws Exception {
 
         log.info("PAN Verification Started for PAN={}", request.panNumber());
 
@@ -58,6 +61,8 @@ public class PanVerificationService {
 
         //  Save pan_verification
         PanVerification verification = new PanVerification();
+        verification.setUser(currentUser);
+        verification.setVerifiedAt(java.time.LocalDateTime.now());
         verification.setPanNumber(request.panNumber());
         verification.setFullName(request.fullName());
         verification.setFathername(request.fathername());
@@ -131,6 +136,46 @@ public class PanVerificationService {
         );
     }
 
+    public ByteArrayInputStream exportPdf(User currentUser) throws Exception {
+        log.info("Export PDF started for user: {}", currentUser.getEmail());
+
+        List<PanVerification> records = currentUser.getRole() == Role.ADMIN
+                ? panVerify.findAllByOrderByIdDesc()
+                : panVerify.findByUserOrderByIdDesc(currentUser);
+
+        log.info("Records found: {}", records.size());
+
+        ByteArrayInputStream stream =
+                pdfGenerator.generate(
+                        records,
+                        currentUser.getRole().name(),
+                        currentUser.getFullName());
+
+        log.info("PDF generated successfully");
+
+        return stream;
+    }
+
+    public ByteArrayInputStream exportExcel(User currentUser) throws Exception {
+        log.info("Export Excel started for user: {}", currentUser.getEmail());
+
+        List<PanVerification> records = currentUser.getRole() == Role.ADMIN
+                ? panVerify.findAllByOrderByIdDesc()
+                : panVerify.findByUserOrderByIdDesc(currentUser);
+
+
+
+        ByteArrayInputStream stream =
+                excelGenerator.generate(
+                        records,
+                        currentUser.getRole().name(),
+                        currentUser.getFullName());
+
+        log.info("Excel generated successfully");
+
+        return stream;
+    }
+
     private String getResponseMessage(String responseCode) {
         if (responseCode == null) return "Unknown Error";
         return switch (responseCode) {
@@ -161,13 +206,29 @@ public class PanVerificationService {
         };
     }
 
-    public List<PanVerification> search(String pan) {
+    public List<PanVerification> search(String pan, User currentUser) {
+
         log.info("Searching PAN Records for {}", pan);
-        return panVerify.findByPanNumberContaining(pan);
+
+        if (currentUser.getRole() == Role.ADMIN) {
+            return panVerify.findByPanNumberContaining(pan,currentUser);
+        }
+
+        return panVerify.findByUserOrderByIdDesc(currentUser)
+                .stream()
+                .filter(v -> v.getPanNumber().contains(pan))
+                .toList();
     }
 
-    public List<PanVerification> getHistory() {
+    public List<PanVerification> getHistory(User currentUser) {
+
         log.info("Fetching PAN Verification History");
-        return panVerify.findAllByOrderByIdDesc();
+
+        if (currentUser.getRole() == Role.ADMIN) {
+            return panVerify.findAllByOrderByIdDesc();
+        }
+
+        return panVerify.findByUserOrderByIdDesc(currentUser);
     }
+
 }

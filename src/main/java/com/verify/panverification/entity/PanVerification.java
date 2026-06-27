@@ -1,14 +1,20 @@
 package com.verify.panverification.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pan_verification")
+@Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PanVerification {
 
     @Id
@@ -29,7 +35,15 @@ public class PanVerification {
     private String verificationStatus;
 
 
-    @ManyToOne
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime verifiedAt = LocalDateTime.now();
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
+
+    @PrePersist
+    public void prePersist() {
+        verifiedAt = LocalDateTime.now();
+    }
 }
