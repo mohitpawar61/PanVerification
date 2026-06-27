@@ -6708,3 +6708,185 @@ java.security.UnrecoverableKeyException: Password verification failed
 2026-06-27 15:38:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-06-27 15:38:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-06-27 15:38:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-06-27 15:38:47 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-06-27 15:38:47 [restartedMain] INFO  c.v.p.PanVerificationApplication - Starting PanVerificationApplication using Java 21.0.11 with PID 27440 (C:\Users\shubh\IdeaProjects\PanVerification\target\classes started by shubh in C:\Users\shubh\IdeaProjects\PanVerification)
+2026-06-27 15:38:47 [restartedMain] DEBUG c.v.p.PanVerificationApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-06-27 15:38:47 [restartedMain] INFO  c.v.p.PanVerificationApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-27 15:38:47 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-27 15:38:47 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-27 15:38:49 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-27 15:38:49 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 134 ms. Found 3 JPA repository interfaces.
+2026-06-27 15:38:51 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-27 15:38:51 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-27 15:38:51 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-27 15:38:51 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-06-27 15:38:51 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 4226 ms
+2026-06-27 15:38:52 [restartedMain] DEBUG c.v.p.security.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-06-27 15:38:52 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-27 15:38:52 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-06-27 15:38:54 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-27 15:38:54 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-27 15:38:55 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@360eab09
+2026-06-27 15:38:55 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-27 15:38:55 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/pan_verification_db]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: pan_verification_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-27 15:38:58 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-27 15:38:58 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-27 15:38:59 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-27 15:38:59 [restartedMain] INFO  c.v.p.config.RestTemplateConfig - Configuring RestTemplate with SSL bypass for UAT
+2026-06-27 15:39:00 [restartedMain] INFO  c.v.p.config.RestTemplateConfig - RestTemplate configured successfully with SSL bypass
+2026-06-27 15:39:00 [restartedMain] INFO  c.v.p.config.CorsConfig - CORs configuration initialized - allowed origins: localhost: 5173, localhost: 3000
+2026-06-27 15:39:00 [restartedMain] INFO  c.v.p.config.SwaggerConfig - Swagger/OpenAPI configuration initialized
+2026-06-27 15:39:00 [restartedMain] DEBUG c.v.p.config.SwaggerConfig - Configuration JWT Bearer Auth for Swagger UI
+2026-06-27 15:39:00 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-27 15:39:00 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-06-27 15:39:00 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-06-27 15:39:01 [restartedMain] INFO  c.v.p.security.SecurityConfig - Configuration Security Filter Chain
+2026-06-27 15:39:01 [restartedMain] INFO  c.v.p.security.SecurityConfig - Security Filter Chain configured successfully
+2026-06-27 15:39:03 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-27 15:39:03 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-27 15:39:03 [restartedMain] INFO  c.v.p.PanVerificationApplication - Started PanVerificationApplication in 17.475 seconds (process running for 19.045)
+2026-06-27 15:39:03 [restartedMain] INFO  c.v.p.config.AdminInitializer - Checking if default admin exists...
+2026-06-27 15:39:04 [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-06-27 15:39:04 [restartedMain] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-06-27 15:39:04 [restartedMain] DEBUG c.v.p.config.AdminInitializer - Default admin already exists, skipping creation
+2026-06-27 15:39:04 [restartedMain] INFO  c.v.p.PanVerificationApplication - ======================================================
+2026-06-27 15:39:04 [restartedMain] INFO  c.v.p.PanVerificationApplication -     PAN Verification Application Started Successfully 
+2026-06-27 15:39:04 [restartedMain] INFO  c.v.p.PanVerificationApplication - =======================================================
+2026-06-27 15:39:43 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-27 15:39:43 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-27 15:39:43 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-06-27 15:39:43 [http-nio-8080-exec-1] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/pan/history
+2026-06-27 15:39:43 [http-nio-8080-exec-1] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: true
+2026-06-27 15:39:43 [http-nio-8080-exec-1] DEBUG c.v.p.security.JwtService - Extracting username from JWT token
+2026-06-27 15:39:43 [http-nio-8080-exec-1] DEBUG c.v.p.security.JwtService - Extracted username: mohit@gmail.com
+2026-06-27 15:39:43 [http-nio-8080-exec-1] DEBUG c.v.p.security.JwtService - Extracting role from JWT token
+2026-06-27 15:39:43 [http-nio-8080-exec-1] DEBUG c.v.p.security.JwtService - Extracted role: USER
+2026-06-27 15:39:43 [http-nio-8080-exec-1] INFO  c.v.p.security.JwtAuthFilter - JWT authenticated user: mohit@gmail.com, role: USER
+2026-06-27 15:39:44 [http-nio-8080-exec-1] INFO  c.v.p.c.PanVerificationController - History API called
+2026-06-27 15:39:44 [http-nio-8080-exec-1] INFO  c.v.p.service.PanVerificationService - Fetching PAN Verification History
+2026-06-27 15:39:44 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        pv1_0.id,
+        pv1_0.dob,
+        pv1_0.fathername,
+        pv1_0.full_name,
+        pv1_0.pan_number,
+        pv1_0.pan_status,
+        pv1_0.user_id,
+        pv1_0.verification_status 
+    from
+        pan_verification pv1_0 
+    order by
+        pv1_0.id desc
+2026-06-27 15:39:44 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        pv1_0.id,
+        pv1_0.dob,
+        pv1_0.fathername,
+        pv1_0.full_name,
+        pv1_0.pan_number,
+        pv1_0.pan_status,
+        pv1_0.user_id,
+        pv1_0.verification_status 
+    from
+        pan_verification pv1_0 
+    order by
+        pv1_0.id desc
+2026-06-27 15:40:12 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtAuthFilter - JWT Filter triggered for URI: /api/pan/verify
+2026-06-27 15:40:12 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtAuthFilter - Auth header present: true
+2026-06-27 15:40:12 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtService - Extracting username from JWT token
+2026-06-27 15:40:12 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtService - Extracted username: mohit@gmail.com
+2026-06-27 15:40:12 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtService - Extracting role from JWT token
+2026-06-27 15:40:12 [http-nio-8080-exec-2] DEBUG c.v.p.security.JwtService - Extracted role: USER
+2026-06-27 15:40:12 [http-nio-8080-exec-2] INFO  c.v.p.security.JwtAuthFilter - JWT authenticated user: mohit@gmail.com, role: USER
+2026-06-27 15:40:13 [http-nio-8080-exec-2] INFO  c.v.p.c.PanVerificationController - PAN Verification Request Received for PAN=AAAPA2117A
+2026-06-27 15:40:13 [http-nio-8080-exec-2] INFO  c.v.p.service.PanVerificationService - PAN Verification Started for PAN=AAAPA2117A
+2026-06-27 15:40:13 [http-nio-8080-exec-2] DEBUG c.v.p.service.PanVerificationService - DOB formatted for Protean: 18/10/1989
+2026-06-27 15:40:13 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - Protean PAN verification started for PAN: AAAPA2117A
+2026-06-27 15:40:13 [http-nio-8080-exec-2] DEBUG c.v.p.service.ProteanService - Input Data JSON: [{"pan":"AAAPA2117A","name":"CHETAN DILIP GHARMALKAR","fathername":"DILIP","dob":"18/10/1989"}]
+2026-06-27 15:40:13 [http-nio-8080-exec-2] INFO  c.v.p.service.SignatureService - Generating digital signature
+2026-06-27 15:40:13 [http-nio-8080-exec-2] DEBUG c.v.p.service.SignatureService - Loading Keystore from file: certs/output.jks
+2026-06-27 15:40:13 [http-nio-8080-exec-2] DEBUG c.v.p.service.SignatureService - KeyStore loaded successfully
+2026-06-27 15:40:13 [http-nio-8080-exec-2] DEBUG c.v.p.service.SignatureService - Found key alies: ds test certificate 1
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.SignatureService - Signature generated successfully
+2026-06-27 15:40:14 [http-nio-8080-exec-2] DEBUG c.v.p.service.ProteanService - Signature generated successfully
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - PROTEAN API - REQUEST HEADERS
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   User_ID        : V0024301
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Records_count  : 1
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Request_time   : 2026-06-27T15:40:14
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Transaction_ID : V0024301:1782555014357
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Version        : 4
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 15:40:14 [http-nio-8080-exec-2] DEBUG c.v.p.service.ProteanService - Final Request JSON: {"User_ID":"V0024301","Records_count":"1","Request_time":"2026-06-27T15:40:14","Transaction_ID":"V0024301:1782555014357","Version":"4","inputData":[{"pan":"AAAPA2117A","name":"CHETAN DILIP GHARMALKAR","fathername":"DILIP","dob":"18/10/1989"}],"signature":"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"}
+2026-06-27 15:40:14 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - Calling Protean API at URL: https://121.240.36.237/TIN/PanInquiryAPIBackEnd
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - Protean API Response Status: 200 OK
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - PROTEAN API - RESPONSE HEADERS
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   User_ID        : V0024301
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Records_count  : 1
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Response_time  : 2026-06-27T15:40:51.694
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Transaction_ID : V0024301:1782555014357
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   Version        : 4
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 15:40:15 [http-nio-8080-exec-2] DEBUG c.v.p.service.ProteanService - Protean API Response Body: {"response_Code":"1","outputData":[{"pan":"AAAPA2117A","pan_status":"N","name":"","fathername":"","dob":"","seeding_status":""}]}
+
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - PROTEAN API - RESPONSE BODY
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   response_Code  : 1
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   outputData     : 1 record(s)
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -   outputData[0] :
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -     pan            : AAAPA2117A
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -     pan_status     : N
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -     name           : 
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -     fathername     : 
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -     dob            : 
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService -     seeding_status : 
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.ProteanService - ---------------------------------------------------------------
+2026-06-27 15:40:15 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        pan_verification
+        (dob, fathername, full_name, pan_number, pan_status, user_id, verification_status) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 15:40:15 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        pan_verification
+        (dob, fathername, full_name, pan_number, pan_status, user_id, verification_status) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.service.PanVerificationService - PAN Verification Saved Successfully | PAN=AAAPA2117A | Status=SUCCESS
+2026-06-27 15:40:15 [http-nio-8080-exec-2] INFO  c.v.p.c.PanVerificationController - PAN Verification Completed for PAN=AAAPA2117A
+2026-06-27 15:59:43 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-27 15:59:43 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-27 15:59:43 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-27 15:59:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-06-27 15:59:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

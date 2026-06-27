@@ -6,17 +6,18 @@ import com.verify.panverification.dto.PanRequest;
 import com.verify.panverification.dto.PanVerificationRequest;
 import com.verify.panverification.dto.PanVerificationResponse;
 import com.verify.panverification.entity.PanVerification;
+import com.verify.panverification.entity.ProteanOutputData;
+import com.verify.panverification.entity.ProteanResponseHeader;
 import com.verify.panverification.repository.PanVerificationRepository;
-import com.verify.panverification.repository.UserRepository;
+import com.verify.panverification.repository.ProteanResponseHeaderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -25,80 +26,108 @@ import java.util.List;
 public class PanVerificationService {
 
     private final PanVerificationRepository panVerify;
+    private final ProteanResponseHeaderRepository headerRepository;
     private final ProteanService proteanService;
     private final ObjectMapper objectMapper;
 
     private static final DateTimeFormatter PROTEAN_DOB_FORMAT =
             DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    public PanVerificationResponse verify(PanVerificationRequest request) throws Exception {
 
-
-    public PanVerificationResponse verify(
-            PanVerificationRequest request
-    ) throws Exception{
-
-        log.info("PAN Verification Started for PAN={}",
-                request.panNumber());
+        log.info("PAN Verification Started for PAN={}", request.panNumber());
 
         String dobForProtean = request.dob().format(PROTEAN_DOB_FORMAT);
-        log.debug("DOB formatted for Protean: {}",dobForProtean);
+        log.debug("DOB formatted for Protean: {}", dobForProtean);
 
         PanRequest panRequest = new PanRequest(
-
                 request.panNumber(),
                 request.fullName(),
                 request.fathername(),
                 dobForProtean
         );
 
+        //  Call Protean API
         ResponseEntity<String> rawResponse = proteanService.verifyPan(panRequest);
-        String responseBody = rawResponse.getBody();
+        String responseBody   = rawResponse.getBody();
+        HttpHeaders respHeaders = rawResponse.getHeaders();
 
-
-
-        String panStatus       = null;
+        String panStatus          = null;
         String verificationStatus = "FAILED";
+        String responseCode       = null;
 
-
-        if (responseBody != null && !responseBody.isBlank() && !responseBody.startsWith("ERROR")) {
-
-            JsonNode root = objectMapper.readTree(responseBody);
-            String responseCode  = root.path("response_Code").asText(null);
-
-            if ("1".equals(responseCode)) {
-                JsonNode outputData = root.path("outputData");
-                if (outputData.isArray() && !outputData.isEmpty()) {
-                    JsonNode first = outputData.get(0);
-                    panStatus         = first.path("pan_status").asText(null);
-                    verificationStatus = "SUCCESS";
-                }
-            } else {
-                log.warn("Protean returned non-success response_Code={}", responseCode);
-            }
-        }else {
-            log.error("Protean call returned error: {}",responseBody);
-        }
-
-        // Save to DB
+        //  Save pan_verification
         PanVerification verification = new PanVerification();
         verification.setPanNumber(request.panNumber());
         verification.setFullName(request.fullName());
         verification.setFathername(request.fathername());
         verification.setDob(request.dob());
+
+        // Build protean_response_header
+        ProteanResponseHeader header = new ProteanResponseHeader();
+        header.setUserId(respHeaders.getFirst("User_ID"));
+        header.setRecordsCount(respHeaders.getFirst("Records_count"));
+        header.setResponseTime(respHeaders.getFirst("Response_time"));
+        header.setTransactionId(respHeaders.getFirst("Transaction_ID"));
+        header.setVersion(respHeaders.getFirst("Version"));
+
+        List<ProteanOutputData> outputDataList = new ArrayList<>();
+
+        //  Parse response body
+        if (responseBody != null && !responseBody.isBlank()
+                && !responseBody.startsWith("ERROR")) {
+
+            JsonNode root = objectMapper.readTree(responseBody);
+            responseCode  = root.path("response_Code").asText(null);
+            header.setResponseCode(responseCode);
+
+            if ("1".equals(responseCode)) {
+                JsonNode outputData = root.path("outputData");
+                if (outputData.isArray() && !outputData.isEmpty()) {
+                    panStatus          = outputData.get(0).path("pan_status").asText(null);
+                    verificationStatus = "SUCCESS";
+
+                    //  Build protean_output_data rows
+                    for (JsonNode item : outputData) {
+                        ProteanOutputData od = new ProteanOutputData();
+                        od.setPan(item.path("pan").asText(null));
+                        od.setPanStatus(item.path("pan_status").asText(null));
+                        od.setName(item.path("name").asText(null));
+                        od.setFathername(item.path("fathername").asText(null));
+                        od.setDob(item.path("dob").asText(null));
+                        od.setSeedingStatus(item.path("seeding_status").asText(null));
+                        od.setHeader(header);
+                        outputDataList.add(od);
+                    }
+                }
+            } else {
+                log.warn("Protean Error [{}] : {}", responseCode,
+                        getResponseMessage(responseCode));
+            }
+
+        } else {
+            log.error("Protean call returned error: {}", responseBody);
+            header.setResponseCode("ERROR");
+        }
+
+        //  Save all to DB
         verification.setPanStatus(panStatus);
         verification.setVerificationStatus(verificationStatus);
-
-
         panVerify.save(verification);
 
-        log.info("PAN Verification Saved Successfully | PAN={} | Status={}",
-                verification.getPanNumber(),verification.getVerificationStatus());
+        header.setPanVerification(verification);
+        header.setOutputData(outputDataList);
+        headerRepository.save(header);
+
+
+        log.info("PAN Verification Saved | PAN={} | Status={}",
+                verification.getPanNumber(), verification.getVerificationStatus());
 
         return new PanVerificationResponse(
                 verification.getPanNumber(),
                 verification.getPanStatus(),
                 verification.getVerificationStatus(),
-                "PAN Verification" + verificationStatus
+                getResponseMessage(responseCode)
         );
     }
 
@@ -132,16 +161,13 @@ public class PanVerificationService {
         };
     }
 
-    public List<PanVerification>
-    search(String pan){
+    public List<PanVerification> search(String pan) {
         log.info("Searching PAN Records for {}", pan);
-        return panVerify
-                .findByPanNumberContaining(pan);
+        return panVerify.findByPanNumberContaining(pan);
     }
 
     public List<PanVerification> getHistory() {
         log.info("Fetching PAN Verification History");
-        return panVerify
-                .findAllByOrderByIdDesc();
+        return panVerify.findAllByOrderByIdDesc();
     }
 }
