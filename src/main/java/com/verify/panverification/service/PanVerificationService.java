@@ -47,7 +47,7 @@ public class PanVerificationService {
                 dobForProtean
         );
 
-        //  Call Protean API
+        //Call Protean API
         ResponseEntity<String> rawResponse = proteanService.verifyPan(panRequest);
         String responseBody   = rawResponse.getBody();
         HttpHeaders respHeaders = rawResponse.getHeaders();
@@ -63,7 +63,7 @@ public class PanVerificationService {
         verification.setFathername(request.fathername());
         verification.setDob(request.dob());
 
-        // Build protean_response_header
+        //Build protean_response_header
         ProteanResponseHeader header = new ProteanResponseHeader();
         header.setUserId(respHeaders.getFirst("User_ID"));
         header.setRecordsCount(respHeaders.getFirst("Records_count"));
@@ -73,7 +73,7 @@ public class PanVerificationService {
 
         List<ProteanOutputData> outputDataList = new ArrayList<>();
 
-        //  Parse response body
+        // Parse response body
         if (responseBody != null && !responseBody.isBlank()
                 && !responseBody.startsWith("ERROR")) {
 
@@ -110,7 +110,7 @@ public class PanVerificationService {
             header.setResponseCode("ERROR");
         }
 
-        //  Save all to DB
+        //Step 5: Save all to DB
         verification.setPanStatus(panStatus);
         verification.setVerificationStatus(verificationStatus);
         panVerify.save(verification);
