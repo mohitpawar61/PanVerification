@@ -140,7 +140,7 @@ Admin-side download hub for the PDF and Excel verification reports.
 ![Admin reports page](docs/screenshots/19-admin-reports.png)
 
 ### Light Theme
-The admin dashboard also supports a light theme, toggled from the top bar.
+The application also supports a light theme, toggled from the top bar.
 
 ![Admin dashboard in light theme](docs/screenshots/20-admin-dashboard-light.png)
 
