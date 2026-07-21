@@ -14,7 +14,7 @@
 ## 📚 Table of Contents
 
 1. [Project Introduction](#-project-introduction)
-2. [🚀 Live Demo](#-🚀 Live Demo)
+2. [Live Demo](#-live-demo)
 3. [Screenshots](#-screenshots)
 4. [Project Overview](#-project-overview)
 5. [Resume Summary](#-resume-summary)
