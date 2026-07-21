@@ -14,38 +14,39 @@
 ## 📚 Table of Contents
 
 1. [Project Introduction](#-project-introduction)
-2. [Screenshots](#-screenshots)
-3. [Project Overview](#-project-overview)
-4. [Resume Summary](#-resume-summary)
-5. [Features](#-features)
-6. [Technology Stack](#-technology-stack)
-7. [Project Folder Structure](#-project-folder-structure)
-8. [Complete Application Flow](#-complete-application-flow)
-9. [Architecture](#-architecture)
-10. [Database](#-database)
-11. [API Documentation](#-api-documentation)
-12. [Authentication Flow](#-authentication-flow)
-13. [Class-by-Class Explanation](#-class-by-class-explanation)
-14. [Code Walkthrough](#-code-walkthrough)
-15. [Business Logic Explanation](#-business-logic-explanation)
-16. [End-to-End Request Flow (One API, Fully Traced)](#-end-to-end-request-flow-one-api-fully-traced)
-17. [SQL & JPA Queries](#-sql--jpa-queries)
-18. [Exception Handling](#-exception-handling)
-19. [Logging](#-logging)
-20. [Security](#-security)
-21. [Validation](#-validation)
-22. [Docker](#-docker)
-23. [Deployment](#-deployment)
-24. [Testing](#-testing)
-25. [Performance](#-performance)
-26. [Known Issues / Challenges Faced](#-known-issues--challenges-faced)
-27. [Improvements (Future Work)](#-improvements-future-work)
-28. [50 Interview Questions From This Exact Project](#-50-interview-questions-from-this-exact-project)
-29. [Recruiter Highlights](#-recruiter-highlights)
-30. [ATS Keywords](#-ats-keywords)
-31. [Developer Notes (Revisit-After-1-Year Notes)](#-developer-notes-revisit-after-1-year-notes)
-32. [Revision Sheets](#-revision-sheets)
-33. [Project Story — "Explain Your Project" Interview Answer](#-project-story--explain-your-project-interview-answer)
+2. 🚀 Live Demo
+3. [Screenshots](#-screenshots)
+4. [Project Overview](#-project-overview)
+5. [Resume Summary](#-resume-summary)
+6. [Features](#-features)
+7. [Technology Stack](#-technology-stack)
+8. [Project Folder Structure](#-project-folder-structure)
+9. [Complete Application Flow](#-complete-application-flow)
+10. [Architecture](#-architecture)
+11. [Database](#-database)
+12. [API Documentation](#-api-documentation)
+13. [Authentication Flow](#-authentication-flow)
+14. [Class-by-Class Explanation](#-class-by-class-explanation)
+15. [Code Walkthrough](#-code-walkthrough)
+16. [Business Logic Explanation](#-business-logic-explanation)
+17. [End-to-End Request Flow (One API, Fully Traced)](#-end-to-end-request-flow-one-api-fully-traced)
+18. [SQL & JPA Queries](#-sql--jpa-queries)
+19. [Exception Handling](#-exception-handling)
+20. [Logging](#-logging)
+21. [Security](#-security)
+22. [Validation](#-validation)
+23. [Docker](#-docker)
+24. [Deployment](#-deployment)
+25. [Testing](#-testing)
+26. [Performance](#-performance)
+27. [Known Issues / Challenges Faced](#-known-issues--challenges-faced)
+28. [Improvements (Future Work)](#-improvements-future-work)
+29. [50 Interview Questions From This Exact Project](#-50-interview-questions-from-this-exact-project)
+30. [Recruiter Highlights](#-recruiter-highlights)
+31. [ATS Keywords](#-ats-keywords)
+32. [Developer Notes (Revisit-After-1-Year Notes)](#-developer-notes-revisit-after-1-year-notes)
+33. [Revision Sheets](#-revision-sheets)
+34. [Project Story — "Explain Your Project" Interview Answer](#-project-story--explain-your-project-interview-answer)
 
 ---
 
@@ -58,6 +59,18 @@ It was built to solve a very real business problem: **any Indian business that o
 The primary users are: **registered application users** (who submit PAN verification requests and view their own history/reports) and **administrators** (who see all users' data, platform-wide statistics, and reports). 💡 *In an interview, frame this project as "a compliance-automation microservice for KYC-style PAN verification with JWT security, external government API integration, and reporting" — that one sentence covers architecture, purpose, and complexity in one breath.*
 
 ---
+
+## 🚀 Live Demo
+
+No hosted/live demo (no deployed URL, no Swagger UI, no hosted frontend) — this is a backend-only Spring Boot service intended to be run locally (see [Installation Guide](#-installation-guide)).
+
+### ▶️ Demo Video
+
+[![Watch the Demo](https://img.shields.io/badge/▶️_Watch_Demo-Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1wco99PDiV8PsaYbeLzUvdLhvYmlsACeL/view?usp=drive_link)
+
+A walkthrough video demonstrating the Razorpay checkout flow, signature verification, and Kafka-driven enrollment email is available on Google Drive: **[Watch Demo](https://drive.google.com/file/d/1wco99PDiV8PsaYbeLzUvdLhvYmlsACeL/view?usp=drive_link)**
+
+> GitHub doesn't render Google Drive video previews inline, so the badge above links out to the file. Make sure Drive sharing is set to **"Anyone with the link can view"** so recruiters aren't blocked by a permission request.
 
 ## 📸 Screenshots
 
