@@ -8,6 +8,8 @@
 ![License](https://img.shields.io/badge/License-Educational-blue)
 ![Status](https://img.shields.io/badge/Status-Active%20Development-yellow)
 
+<img src="docs/screenshots/logo (2).svg" width="300" alt="PAN Verification System logo">
+
 > ⚠️ **Scope note (read first):** This document describes exactly what exists in the uploaded repository — a **Spring Boot backend only** (`PanVerification-master`). The project's own `README.md` includes screenshots of a web UI (login, dashboard, admin panel, light/dark theme) and a CORS config that allows `http://localhost:5173` (Vite) and `http://localhost:3000`. That tells us a **separate frontend application exists**, but its source code is **not part of this repository**, so it is not documented here beyond what can be inferred from the backend and the 20 screenshots shipped in `docs/screenshots/`. Anywhere this document isn't 100% sure about something, it says so explicitly instead of guessing.
 
 ---
