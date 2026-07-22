@@ -1,0 +1,17 @@
+<svg width="680" height="420" viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>PAN Verification System logo</title>
+<desc>An identity card icon with a checkmark badge, representing a PAN card verification system</desc>
+<rect x="210" y="120" width="260" height="160" rx="14" fill="#eef2ff" stroke="#4338ca" stroke-width="2"/>
+<rect x="232" y="145" width="60" height="60" rx="8" fill="#c7d2fe" stroke="#4338ca" stroke-width="1.5"/>
+<circle cx="262" cy="168" r="12" fill="#818cf8"/>
+<path d="M244 198 Q262 180 280 198" fill="#818cf8"/>
+<rect x="306" y="150" width="130" height="10" rx="5" fill="#a5b4fc"/>
+<rect x="306" y="172" width="110" height="8" rx="4" fill="#c7d2fe"/>
+<rect x="306" y="192" width="120" height="8" rx="4" fill="#c7d2fe"/>
+<rect x="232" y="222" width="200" height="8" rx="4" fill="#e0e7ff"/>
+<rect x="232" y="242" width="160" height="8" rx="4" fill="#e0e7ff"/>
+<circle cx="450" cy="230" r="38" fill="#22c55e"/>
+<path d="M432 230 L444 242 L468 216" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="340" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="600" fill="#1e293b">PAN Verification System</text>
+<text x="340" y="363" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Instant identity &amp; PAN authentication</text>
+</svg>
