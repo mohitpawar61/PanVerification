@@ -1,4 +1,4 @@
-# 🔍 PAN Verification System — Interview & Portfolio Documentation
+# 🔍 PAN Verification System 
 
 ![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.0-brightgreen?logo=springboot)
