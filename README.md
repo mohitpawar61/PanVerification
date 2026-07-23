@@ -10,6 +10,8 @@
 <p align="center">
 <img src="docs/screenshots/logo (2).svg" width="300" alt="PAN Verification System logo" >
 </p>
+
+---
 > ⚠️ **Scope note (read first):** This document describes exactly what exists in the uploaded repository — a **Spring Boot backend only** (`PanVerification-master`). The project's own `README.md` includes screenshots of a web UI (login, dashboard, admin panel, light/dark theme) and a CORS config that allows `http://localhost:5173` (Vite) and `http://localhost:3000`. That tells us a **separate frontend application exists**, but its source code is **not part of this repository**, so it is not documented here beyond what can be inferred from the backend and the 20 screenshots shipped in `docs/screenshots/`. Anywhere this document isn't 100% sure about something, it says so explicitly instead of guessing.
 
 ---
@@ -1538,4 +1540,26 @@ If I kept building this out, my priorities would be: fix that repository bug, ad
 
 ## 📄 License
 
-This project is built for integration with the Protean OPV API and is intended for educational and enterprise KYC/PAN verification purposes.
+ MIT License
+
+Copyright (c) 2026 Mohit Pawar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
